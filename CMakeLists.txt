@@ -12,6 +12,7 @@ if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
 endif()
 
 find_package(ament_cmake REQUIRED)
+find_package(ament_cmake_target_dependencies REQUIRED)
 find_package(rclpy REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(rviz_common REQUIRED)
@@ -30,7 +31,6 @@ find_package(pluginlib REQUIRED)
 find_package(kelo_tulip REQUIRED)
 find_package(ros_gz_sim REQUIRED)
 find_package(ros_gz_bridge REQUIRED)
-find_package(ros_ign_bridge REQUIRED)
 find_package(Boost REQUIRED COMPONENTS thread)
 
 option(BUILD_DOC "Build documentation" OFF)
@@ -60,25 +60,19 @@ add_executable(robile_gazebo_platform_controller
     src/RobilePlatformController.cpp
     src/main.cpp
 )
-
-ament_target_dependencies(robile_gazebo_platform_controller
-  rclcpp
-  rclpy
-  std_msgs
-  geometry_msgs
-  nav_msgs
-  sensor_msgs
-  tf2
-  tf2_ros
-  tf2_geometry_msgs
-  visualization_msgs
-  rviz_common
-  rviz_ogre_vendor
-  rviz_rendering
-  ros_gz_sim
-  ros_gz_bridge   
-  kelo_tulip
+target_link_libraries(robile_gazebo_platform_controller
+  rclcpp::rclcpp
+  geometry_msgs::geometry_msgs
+  nav_msgs::nav_msgs
+  sensor_msgs::sensor_msgs
+  std_msgs::std_msgs
+  tf2::tf2
+  tf2_ros::tf2_ros
+  tf2_geometry_msgs::tf2_geometry_msgs
+  visualization_msgs::visualization_msgs
+  kelo_tulip::kelo_tulip
 )
+
 
 install(TARGETS
   robile_gazebo_platform_controller
@@ -91,4 +85,5 @@ install(DIRECTORY
 )
 ament_export_libraries(robile_gazebo_platform_controller)
 ament_package()
+
 

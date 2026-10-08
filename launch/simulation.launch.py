@@ -146,18 +146,24 @@ def generate_launch_description():
     )
 
     controller_processes = [
-        ExecuteProcess(
-            cmd=[
-                "ros2",
-                "control",
-                "load_controller",
-                "--set-state",
-                "active",
-                "robile_hub_wheels_controller",
-            ],
-            output="screen",
-        )
-    ]
+    ExecuteProcess(
+        cmd=[
+            "ros2",
+            "control",
+            "load_controller",
+            "--set-state",
+            "active",
+            "robile_hub_wheels_controller",
+            os.path.join(
+                get_package_share_directory("robile_gazebo"),
+                "config",
+                "ros_controller",
+                "1_wheel_controller.yaml",
+            ),
+        ],
+        output="screen",
+    )
+]
 
     load_controllers_event_handler = RegisterEventHandler(
         OnProcessExit(target_action=spawn, on_exit=controller_processes)

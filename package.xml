@@ -32,7 +32,6 @@
     <depend>std_msgs</depend>
     <depend>ros_gz_sim</depend>
     <depend>ros_gz_bridge</depend>
-    <depend>ros_ign_bridge</depend>
     <depend>visualization_msgs</depend>
     <depend>sensor_msgs</depend>
     <depend>tf2</depend>

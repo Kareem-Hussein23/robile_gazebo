@@ -1,0 +1,6 @@
+robile_hub_wheels_controller:
+  ros__parameters:
+    joints:
+      - robile_5_drive_left_hub_wheel_joint
+      - robile_5_drive_right_hub_wheel_joint
+    interface_name: velocity

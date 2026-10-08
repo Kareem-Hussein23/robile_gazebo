@@ -101,8 +101,8 @@ void RobilePlatformController::step() {
             float setpoint1, setpoint2;
             _controller.calculateWheelTargetVelocity(
             wheelNumber, drive.second.getPivotOrientation(), setpoint1, setpoint2);
-            allWheelVelocities.push_back(-setpoint1);
-            allWheelVelocities.push_back(-setpoint2);
+            allWheelVelocities.push_back(setpoint1);
+            allWheelVelocities.push_back(setpoint2);
         }
         std_msgs::msg::Float64MultiArray msg;
         msg.data = allWheelVelocities;
